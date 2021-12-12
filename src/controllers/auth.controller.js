@@ -29,13 +29,6 @@ const register = async(req, res) => {
 }
 
 const login = async(req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      const Errors = errors.array().map((err) => {
-          return (`{${err.param} : ${err.msg}}`);
-      })
-      return res.status(400).send(Errors);
-    }
     try {
         let user = await User.findOne({email : req.body.email});
         if(!user)
